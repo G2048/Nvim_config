@@ -1,0 +1,186 @@
+"====================================================="
+"			PLUGINS			      "
+"====================================================="
+call plug#begin('~/.vim/plugged')
+
+"LSP Config
+Plug 'neovim/nvim-lspconfig'
+"Plug 'hrsh7th/nvim-compe'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'L3MON4D3/LuaSnip'
+
+"Autocomplete
+Plug 'nvim-lua/completion-nvim'
+"Autocomment
+Plug 'numToStr/Comment.nvim'
+
+"Plug 'wbthomason/packer.nvim'
+Plug 'vim-airline/vim-airline'
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'preservim/nerdtree'
+"Plug 'ryanoasis/vim-devicons'
+Plug 'kyazdani42/nvim-web-devicons'
+"Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+"ColorSchemas
+Plug 'ErichDonGubler/vim-sublime-monokai'
+Plug 'morhetz/gruvbox'
+Plug 'ayu-theme/ayu-vim'
+
+call plug#end()
+"====================================================="
+
+"Airline 
+let g:airline_powerline_fonts = 1 "Включить поддержку Powerline шрифтов
+let g:airline#extensions#keymap#enabled = 0 "Не показывать текущий маппинг
+let g:airline_section_z = "\ue0a1:%l/%L Col:%c" "Кастомная графа положения курсора
+let g:Powerline_symbols='unicode' "Поддержка unicode
+let g:airline#extensions#xkblayout#enabled = 0 "Про это позже расскажу
+
+"... для изменения курсора в разных режимах используйте это:
+set ttimeoutlen=10 "Понижаем задержку ввода escape последовательностей
+let &t_SI.="\e[5 q" "SI = режим вставки
+let &t_SR.="\e[3 q" "SR = режим замены
+let &t_EI.="\e[1 q" "EI = нормальный режим
+"Где 1 - это мигающий прямоугольник
+"2 - обычный прямоугольник
+"3 - мигающее подчёркивание
+"4 - просто подчёркивание
+"5 - мигающая вертикальная черта
+"6 - просто вертикальная черта
+
+"NERDTree 
+" Открывать дерево по нажаить Ctrl+t 
+map <C-t> :NERDTreeToggle<CR> 
+" Немного магии, если мы запустим Vim без указания файла для редактирования, 
+" то дерево будет открыто, а если будет указан файл, то дерево 
+" открыто не будет
+"autocmd StdinReadPre * let s:std_in=1 
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+"====================================================="
+"                       CORE                          "
+"====================================================="
+set encoding=UTF-8
+set wrap
+set number
+set noswapfile
+"Ленивая отрисовка при вывполнении скриптов
+set lz
+set mouse=
+filetype on
+
+" Включаем bash-подобное дополнение командной строки 
+"set wildmode=longest:list,full 
+
+" Разрешить копирование из vim в системный буфер обмена 
+"set clipboard=unnamedplus
+
+
+"colorscheme ron
+"colorscheme darkblue
+"colorscheme sublimemonokai
+colorscheme gruvbox
+
+"inoremap
+
+"Орфография для английского и русского языка
+set spelllang=en,ru
+
+"Два пробела при табуляции в качестве отступа для js/html/xml файлов, для остальных 4
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
+set autoindent 
+set smarttab
+set expandtab
+
+" Отображение специальных символов 
+set showbreak=↪
+
+
+"Даже, если сейчас русская раскладка, все равно можно вводить любые команды типа Ctrl + r и т.д.
+"set keymap=russian-jcukenwin
+
+"Подсветка строки, на которой находится курсор
+set cursorline
+set nostartofline
+hi CursorLine cterm=underline
+
+"Возможность отката назад в файле
+set undofile
+
+" Включение/Выключение нумерации строк
+nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
+nnoremap <F3> :set nocursorcolumn!<CR>:set foldcolumn=0<CR>
+nnoremap <F4> :set norelativenumber!<CR>
+nnoremap <F5> :set nocursorline! <CR>
+nnoremap ,<space> :nohlsearch <CR>
+nnoremap <Enter> 
+"nmap 11 byei(<ESC>ea)
+"nmap 12 byei"<ESC>ea"
+
+"====================================================="
+"				AUTOCOMPLITE
+"====================================================="
+
+lua << EOF
+require'lspconfig'.clangd.setup{}
+require'lspconfig'.pyright.setup{}
+-- Mappings.
+-- See `:help vim.diagnostic.*` for documentation on any of the below functions
+local opts = { noremap=true, silent=true }
+vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+local on_attach = function(client, bufnr)
+  -- Enable completion triggered by <c-x><c-o>
+  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  -- Mappings.
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+  vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+  vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+  vim.keymap.set('n', '<space>wl', function()
+    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+  end, bufopts)
+  vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
+  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+  vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
+end
+
+local lsp_flags = {
+  -- This is the default in Nvim 0.7+
+  debounce_text_changes = 150,
+}
+require('lspconfig')['pyright'].setup{
+    on_attach = on_attach,
+    flags = lsp_flags,
+}
+require('lspconfig')['tsserver'].setup{
+    on_attach = on_attach,
+    flags = lsp_flags,
+}
+require('lspconfig')['rust_analyzer'].setup{
+    on_attach = on_attach,
+    flags = lsp_flags,
+    -- Server-specific settings...
+    settings = {
+      ["rust-analyzer"] = {}
+    }
+}
+EOF

@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/var/lib/postgresql/11/main/pg_twophase'
+let g:netrw_dirhist_2='/var/lib/postgresql/11/main'
+let g:netrw_dirhist_3='/var/lib/postgresql/11/main/pg_wal'
+let g:netrw_dirhist_4='/var/lib/postgresql/11/main/pg_wal/archive_status'
+let g:netrw_dirhist_5='/var/lib/postgresql/11/main/pg_wal'
+let g:netrw_dirhist_6='/etc/postgresql/11/main/conf.d'
+let g:netrw_dirhist_7='/etc/postgresql/11/main'
+let g:netrw_dirhist_8='/home/user/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/highlighters/cursor'
+let g:netrw_dirhist_9='/home/user/TESTS/PYTHON/REVERSE'
