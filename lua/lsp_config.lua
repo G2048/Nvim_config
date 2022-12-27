@@ -23,5 +23,5 @@ lsp.pyls.setup{
   on_attach = custom_attach
 }
 
---Include in init.lua^
+--Include in init.lua
 --require('lsp_config')

@@ -6,31 +6,34 @@ function M.setup()
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
   end
 
-  local luasnip = require "luasnip"
-  local cmp = require "cmp"
-  -- local tabnine = require 'cmp_tabnine'
-
---   tabnine.setup({
--- 	max_lines = 1000;
--- 	max_num_results = 20;
--- 	sort = true;
--- 	run_on_every_keystroke = true;
--- 	snippet_placeholder = '..';
--- 	ignored_file_types = { -- default is not to ignore
--- 		-- uncomment to ignore in lua:
--- 		-- lua = true
--- 	};
--- 	show_prediction_strength = false;
--- })
+    local luasnip = require "luasnip"
+    local cmp = require "cmp"
+    local compare = require('cmp.config.compare')
 
   cmp.setup {
+    -- sorting = {
+    --     priority_weight = 3,
+    --     comparators = {
+    --       -- require('cmp_tabnine.compare'),
+    --       compare.offset,
+    --       compare.exact,
+    --       compare.score,
+    --       compare.recently_used,
+    --       compare.kind,
+    --       compare.sort_text,
+    --       compare.length,
+    --       compare.order,
+    --     },
+    -- },
     completion = { completeopt = "menu,menuone,noinsert", keyword_length = 1 },
-    experimental = { native_menu = false, ghost_text = false },
+    experimental = { native_menu = false, ghost_text = true },
+    view = { entries =  "native" },
     snippet = {
       expand = function(args)
         require("luasnip").lsp_expand(args.body)
       end,
     },
+
     formatting = {
       format = function(entry, vim_item)
         vim_item.menu = ({
@@ -38,10 +41,13 @@ function M.setup()
           luasnip = "[Snip]",
           nvim_lua = "[Lua]",
           treesitter = "[Treesitter]",
+          cmp_tabnine = "[Tabnine]"
         })[entry.source.name]
+
         return vim_item
       end,
     },
+
     mapping = {
       ["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
       ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
@@ -89,15 +95,15 @@ function M.setup()
       }),
     },
     sources = {
-      -- { name = 'cmp_tabnine' },
-      { name = "treesitter" },
-      { name = "buffer" },
-      { name = "luasnip" },
-      { name = "nvim_lua" },
+      { name = "treesitter", priority = 1 },
+      { name = "buffer", priority = 4 },
+      { name = "luasnip", priority = 10 },
+      { name = "nvim_lua", priority = 2},
       { name = "path" },
       { name = "spell" },
       { name = "emoji" },
       { name = "calc" },
+      { name = 'cmp_tabnine', priority = 1 },
     },
 
     window = {
@@ -125,7 +131,7 @@ function M.setup()
   })
 
   -- Auto pairs
-  local cmp_autopairs = require "nvim-autopairs.completion.cmp"
+  local cmp_autopairs = require("nvim-autopairs.completion.cmp")
   cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done { map_char = { tex = "" } })
 
 end

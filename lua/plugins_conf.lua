@@ -40,6 +40,7 @@ end
 local function plugins(use)
     use { "wbthomason/packer.nvim" }
 
+
     -- Colorscheme
     use {
             "ajmwagar/vim-deus",
@@ -48,25 +49,25 @@ local function plugins(use)
               end,
         }
 
-    use { 
+    use {
             "jacoborus/tender.vim",
             config = function()
                 -- vim.cmd "colorscheme tender"
             end,
     }
-    use { 
+    use {
             "dracula/vim",
             config = function()
                 -- vim.cmd "colorscheme dracula"
             end,
     }
-    use { 
+    use {
             "sainnhe/everforest",
                 -- vim.cmd "colorscheme everforest"
             config = function()
             end,
     }
-    use { 
+    use {
             "nanotech/jellybeans.vim",
                 -- vim.cmd "colorscheme jellybeans"
             config = function()
@@ -98,7 +99,7 @@ local function plugins(use)
       wants = {"nvim-lsp-installer", "lsp_signature.nvim" }, -- "coq_nvim"
       config = function()
         require("config.lsp").setup()
-      end, 
+      end,
 
       requires = {
         "williamboman/nvim-lsp-installer",
@@ -144,10 +145,19 @@ local function plugins(use)
         "hrsh7th/cmp-nvim-lua",
         "ray-x/cmp-treesitter",
         "hrsh7th/cmp-cmdline",
-        "saadparwaiz1/cmp_luasnip",
+        -- "saadparwaiz1/cmp_luasnip",
         "hrsh7th/cmp-calc",
         "f3fora/cmp-spell",
         "hrsh7th/cmp-emoji",
+        {
+        'tzachar/cmp-tabnine',
+        -- after = "nvim-cmp",
+        -- run='./install.sh',
+        requires = 'hrsh7th/nvim-cmp',
+        config = function()
+            require("config.cmp_tabnine").setup()
+        end,
+        },
         {
           "L3MON4D3/LuaSnip",
           wants = "friendly-snippets",
@@ -180,7 +190,6 @@ local function plugins(use)
     use {
       "windwp/nvim-autopairs",
       wants = "nvim-treesitter",
-      -- module = { "nvim-autopairs" },
       module = { "nvim-autopairs.completion.cmp", "nvim-autopairs" },
       config = function()
         require("config.autopairs").setup()
@@ -256,8 +265,8 @@ local function plugins(use)
                         "IndentBlanklineIndent6",
                     },
             -- for example, context is off by default, use this to turn it on
-                -- show_current_context = true,
-                -- show_current_context_start = true,
+                show_current_context = true,
+                show_current_context_start = true,
             }
         end,
     }
@@ -276,7 +285,7 @@ local function plugins(use)
 
     -- Better Comment
     use {
-      "umToStr/Comment.nvim",
+      "numToStr/Comment.nvim",
       opt = true,
       keys = { "gc", "gcc", "gbc" },
       config = function()
