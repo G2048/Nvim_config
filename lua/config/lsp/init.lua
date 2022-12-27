@@ -10,6 +10,7 @@ local servers = {
   tsserver = {},
   vimls = {},
   bashls = {},
+  verible = {},
 }
 
 local function on_attach(client, bufnr)

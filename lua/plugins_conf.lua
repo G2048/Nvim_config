@@ -19,7 +19,7 @@ function M.setup()
 
   -- Check if packer.nvim is installed
   -- Run PackerCompile if there are changes in this file
-  local function packer_init()
+local function packer_init()
     local fn = vim.fn
     local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
     if fn.empty(fn.glob(install_path)) > 0 then
@@ -34,39 +34,61 @@ function M.setup()
       vim.cmd [[packadd packer.nvim]]
     end
     vim.cmd "autocmd BufWritePost plugins.lua source <afile> | PackerCompile"
-  end
+end
 
   -- Plugins
-  local function plugins(use)
+local function plugins(use)
     use { "wbthomason/packer.nvim" }
 
     -- Colorscheme
     use {
-           -- "jacoborus/tender.vim",
-            -- "dracula/vim",
-            -- "goolord/alpha-nvim",
-            -- "sainnhe/everforest",
-            -- "nanotech/jellybeans.vim",
-            "gregsexton/Atom",
-            -- "ajmwagar/vim-deus",
-          config = function()
-            -- vim.cmd "colorscheme deus"
-            -- vim.cmd "colorscheme tender"
-            -- vim.cmd "colorscheme dracula"
-            vim.cmd "colorscheme atom"
-          end,
+            "ajmwagar/vim-deus",
+            config = function()
+                vim.cmd "colorscheme deus"
+              end,
         }
+
+    use { 
+            "jacoborus/tender.vim",
+            config = function()
+                -- vim.cmd "colorscheme tender"
+            end,
+    }
+    use { 
+            "dracula/vim",
+            config = function()
+                -- vim.cmd "colorscheme dracula"
+            end,
+    }
+    use { 
+            "sainnhe/everforest",
+                -- vim.cmd "colorscheme everforest"
+            config = function()
+            end,
+    }
+    use { 
+            "nanotech/jellybeans.vim",
+                -- vim.cmd "colorscheme jellybeans"
+            config = function()
+            end,
+    }
+    use {
+            "gregsexton/Atom",
+        config = function()
+                -- vim.cmd "colorscheme atom"
+        end,
+    }
 
 
     -- Startup screen
     use {
-      'goolord/alpha-nvim',
-      wants = { 'kyazdani42/nvim-web-devicons' },
-      config = function()
-        require("config.alpha").setup()
-      end,
-      requires = { 'kyazdani42/nvim-web-devicons'},
-    }
+          'goolord/alpha-nvim',
+          wants = { 'kyazdani42/nvim-web-devicons' },
+          config = function()
+            require("config.alpha").setup()
+          end,
+          requires = { 'kyazdani42/nvim-web-devicons'},
+        }
 
     -- LSP
     use {
@@ -76,7 +98,7 @@ function M.setup()
       wants = {"nvim-lsp-installer", "lsp_signature.nvim" }, -- "coq_nvim"
       config = function()
         require("config.lsp").setup()
-      end,
+      end, 
 
       requires = {
         "williamboman/nvim-lsp-installer",
@@ -106,6 +128,8 @@ function M.setup()
     --   },
     --   disable = false,
     -- }
+
+    --AutoCompletition
     use {
       "hrsh7th/nvim-cmp",
       event = "InsertEnter",
@@ -124,7 +148,6 @@ function M.setup()
         "hrsh7th/cmp-calc",
         "f3fora/cmp-spell",
         "hrsh7th/cmp-emoji",
-        -- {'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'},
         {
           "L3MON4D3/LuaSnip",
           wants = "friendly-snippets",
@@ -136,30 +159,58 @@ function M.setup()
             disable = false,
       },
     }
-    -- use {
-    --     'tzachar/cmp-tabnine', 
-    --     run='./install.sh', 
-    --     requires = 'hrsh7th/nvim-cmp'
-    -- }
+
+
+    -- Treesitter
+    use {
+      "nvim-treesitter/nvim-treesitter",
+      opt = true,
+      event = "BufRead",
+      run = ":TSUpdate",
+      config = function()
+        require("config.treesitter").setup()
+      end,
+      requires = {
+        { "nvim-treesitter/nvim-treesitter-textobjects" },
+      },
+    }
+
 
     -- Auto pairs
     use {
       "windwp/nvim-autopairs",
       wants = "nvim-treesitter",
+      -- module = { "nvim-autopairs" },
       module = { "nvim-autopairs.completion.cmp", "nvim-autopairs" },
       config = function()
         require("config.autopairs").setup()
       end,
     }
 
-    -- use { 
-    --     "github/copilot.vim",
-    --     config = function()
-    --         require().setup()
-    --     end,
-    --
-    -- }
-        
+    -- Better surround: command to replace quotes or brackets csth the substittute cs <sth> for <sth>
+    use { "tpope/vim-surround", event = "InsertEnter" }
+
+    -- FZF Lua
+    use {
+      "ibhagwan/fzf-lua",
+      event = "BufEnter",
+      wants = "nvim-web-devicons",
+    }
+
+    -- User interface
+    use {
+      "stevearc/dressing.nvim",
+      event = "BufEnter",
+      config = function()
+        require("dressing").setup {
+            select = {
+            backend = { "telescope", "fzf", "builtin" },
+          },
+        }
+      end,
+      disable = true,
+    }
+    use { "nvim-telescope/telescope.nvim", module = "telescope", as = "telescope" }
 
     -- WhichKey
     use {
@@ -195,9 +246,18 @@ function M.setup()
         requires = "lukas-reineke/indent-blankline.nvim",
         config = function()
             require("config.indent_blankline").setup {
+                    space_char_blankline = " ",
+                    char_highlight_list = {
+                        "IndentBlanklineIndent1",
+                        "IndentBlanklineIndent2",
+                        "IndentBlanklineIndent3",
+                        "IndentBlanklineIndent4",
+                        "IndentBlanklineIndent5",
+                        "IndentBlanklineIndent6",
+                    },
             -- for example, context is off by default, use this to turn it on
-                show_current_context = true,
-                show_current_context_start = true,
+                -- show_current_context = true,
+                -- show_current_context_start = true,
             }
         end,
     }
@@ -216,7 +276,7 @@ function M.setup()
 
     -- Better Comment
     use {
-      "numToStr/Comment.nvim",
+      "umToStr/Comment.nvim",
       opt = true,
       keys = { "gc", "gcc", "gbc" },
       config = function()
@@ -242,17 +302,22 @@ function M.setup()
       end,
     }
 
+
+
+
+    -- Bootstrap Neovim
     if packer_bootstrap then
       print "Restart Neovim required after installation!"
       require("packer").sync()
     end
   end
 
-  packer_init()
+    -- Init and start packer
+    packer_init()
+    local packer = require "packer"
+    packer.init(conf)
+    packer.startup(plugins)
 
-  local packer = require "packer"
-  packer.init(conf)
-  packer.startup(plugins)
 end
 
 return M

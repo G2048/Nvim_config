@@ -46,3 +46,6 @@ keymap("n", "<F3>", ":set nocursorcolumn!<CR>:set foldcolumn=0<CR>", default_opt
 keymap("n", "<F4>", ":set norelativenumber!<CR>", default_opts)
 keymap("n", "<F5>", ":set nocursorline! <CR>", default_opts)
 keymap("n", ",<space>", ":nohlsearch <CR>", default_opts)
+
+keymap("n", '<space>s', ':so % <CR>', default_opts)
+keymap("n", ';', '%', default_opts)
