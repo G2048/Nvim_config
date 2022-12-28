@@ -145,7 +145,7 @@ local function plugins(use)
         "hrsh7th/cmp-nvim-lua",
         "ray-x/cmp-treesitter",
         "hrsh7th/cmp-cmdline",
-        -- "saadparwaiz1/cmp_luasnip",
+        "saadparwaiz1/cmp_luasnip",
         "hrsh7th/cmp-calc",
         "f3fora/cmp-spell",
         "hrsh7th/cmp-emoji",
@@ -184,6 +184,7 @@ local function plugins(use)
         { "nvim-treesitter/nvim-treesitter-textobjects" },
       },
     }
+    -- print(math.random(1, 10))
 
 
     -- Auto pairs

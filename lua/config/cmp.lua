@@ -8,7 +8,7 @@ function M.setup()
 
     local luasnip = require "luasnip"
     local cmp = require "cmp"
-    local compare = require('cmp.config.compare')
+    -- local compare = require('cmp.config.compare')
 
   cmp.setup {
     -- sorting = {
@@ -25,9 +25,16 @@ function M.setup()
     --       compare.order,
     --     },
     -- },
-    completion = { completeopt = "menu,menuone,noinsert", keyword_length = 1 },
+    completion = { completeopt = "menu,menuone,noinsert", keyword_length = 5 },
     experimental = { native_menu = false, ghost_text = true },
-    view = { entries =  "native" },
+
+    --[[ It's  really bad jocke.
+        Issues: Error executing vim.schedule lua callback: Vim:E785: complete()
+        Solution: https://github.com/hrsh7th/nvim-cmp/issues/936 ]]
+    -- view = { entries =  "native" },
+    -- Work Around:
+    view = cmp.config.window.bordered(),
+
     snippet = {
       expand = function(args)
         require("luasnip").lsp_expand(args.body)
@@ -38,7 +45,7 @@ function M.setup()
       format = function(entry, vim_item)
         vim_item.menu = ({
           buffer = "[Buffer]",
-          luasnip = "[Snip]",
+          -- luasnip = "[Snip]",
           nvim_lua = "[Lua]",
           treesitter = "[Treesitter]",
           cmp_tabnine = "[Tabnine]"

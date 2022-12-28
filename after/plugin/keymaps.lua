@@ -49,3 +49,14 @@ keymap("n", ",<leader>", ":nohlsearch <CR>", default_opts)
 
 keymap("n", '<leader>s', ':so % <CR>', default_opts)
 keymap("n", ';', '%', default_opts)
+
+-- Working with tabs
+keymap('n', '<c-t>n', ':tabnew <CR>', default_opts)
+keymap('n', '<c-t>t', ':tabNext <CR>', default_opts)
+keymap('n', '<c-t>c', ':tabclose <CR>', default_opts)
+keymap('n', '=', ':tabNext <CR>', default_opts)
+keymap('n', '-', ':tabprevious <CR>', default_opts)
+keymap('n', '+', ':tabmove <CR>', default_opts)
+keymap('n', '_', ':tabmove -1<CR>', default_opts)
+keymap('n', '<c-t>1', ':tabfirst <CR>', default_opts)
+keymap('n', '<c-t>0', ':tablast <CR>', default_opts)
