@@ -24,4 +24,4 @@ lsp.pyls.setup{
 }
 
 --Include in init.lua
---require('lsp_config')
+require('lsp_config')

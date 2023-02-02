@@ -60,3 +60,5 @@ keymap('n', '+', ':tabmove <CR>', default_opts)
 keymap('n', '_', ':tabmove -1<CR>', default_opts)
 keymap('n', '<c-t>1', ':tabfirst <CR>', default_opts)
 keymap('n', '<c-t>0', ':tablast <CR>', default_opts)
+
+
