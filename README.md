@@ -34,8 +34,6 @@ fc-cache -fv
 
 # Keymappings
 
-<br>
-
 ## Standart Vim Keys
 
 ### Insert mode
