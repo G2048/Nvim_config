@@ -66,7 +66,7 @@ function M.setup()
     dashboard.section.header.val = header()
 
     dashboard.section.buttons.val = {
-        dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
+        dashboard.button("e", "\xE2\x98\xA0 New file", ":ene <BAR> startinsert <CR>"),
         dashboard.button("c", "  Configuration", ":e $MYVIMRC <CR>"),
         -- dashboard.button("SPC f f", "  Find file"),
         -- dashboard.button("SPC f h", "  Recently opened files"),
