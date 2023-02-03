@@ -1,25 +1,36 @@
 # Folders Tree
 
 ```lua
-. 
-├── after 
-│   └── plugin 
-│       ├── defaults.lua 
-│       └── keymaps.lua 
-├── init.lua 
-├── init.vim_old 
-├── install.sh 
-├── lua 
-│   ├── config 
-│   │   ├── alpha.lua 
-│   │   ├── neogit.lua 
-│   │   └── whichkey.lua 
-│   ├── init.lua_pyr 
-│   ├── lsp_config.lua 
-│   └── plugins.lua 
-└── plugin 
-    ├── packer_compiled.lua 
-    └── packer_compiled.lua_old
+.
+├── after
+│   └── plugin
+│       ├── defaults.lua
+│       └── keymaps.lua
+├── init.lua
+├── init.vim_old
+├── lua
+│   ├── config
+│   │   ├── alpha.lua
+│   │   ├── autopairs.lua
+│   │   ├── cmp.lua
+│   │   ├── cmp_tabnine.lua
+│   │   ├── coq.lua
+│   │   ├── indent_blankline.lua
+│   │   ├── lsp
+│   │   │   ├── init.lua
+│   │   │   ├── installer.lua
+│   │   │   └── keymaps.lua
+│   │   ├── lualine.lua
+│   │   ├── luasnip.lua
+│   │   ├── neogit.lua
+│   │   ├── treesitter.lua
+│   │   └── whichkey.lua
+│   ├── lsp_config.lua
+│   └── plugins_conf.lua
+├── plugin
+│   ├── packer_compiled.lua
+│   └── packer_compiled.lua_old
+└── README.md
 ```
 
 # Requirements
