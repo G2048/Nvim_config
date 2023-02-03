@@ -13,7 +13,7 @@ g.maplocalleader = " "
 opt.termguicolors = true -- Enable colors in terminal
 opt.hlsearch = true --Set highlight on search
 opt.number = true --Make line numbers default
-opt.relativenumber = false  --Make relative number default
+opt.relativenumber = false --Make relative number default
 opt.mouse = "a" --Enable mouse mode
 opt.breakindent = true --Enable break indent
 opt.undofile = true --Save undo history
@@ -30,10 +30,10 @@ opt.spelllang = "en,ru"
 opt.shiftwidth = 4
 opt.tabstop = 4
 opt.softtabstop = 4
-opt.autoindent = true 
-opt.smarttab = true 
-opt.expandtab = true 
-opt.cursorline = true 
+opt.autoindent = true
+opt.smarttab = true
+opt.expandtab = true
+opt.cursorline = true
 --opt.nostartofline = true
 
 

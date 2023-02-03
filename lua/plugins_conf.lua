@@ -45,9 +45,24 @@ function M.setup()
         use {
             "ajmwagar/vim-deus",
             config = function()
-                vim.cmd "colorscheme deus"
+                -- vim.cmd "colorscheme deus"
             end,
         }
+
+        use {
+            "kyoz/purify",
+            config = function()
+                -- vim.cmd "colorscheme purify"
+            end,
+        }
+
+        use {
+            "rakr/vim-one",
+            config = function()
+                vim.cmd "colorscheme one"
+            end,
+        }
+
 
         use {
             "jacoborus/tender.vim",
