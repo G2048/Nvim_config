@@ -66,22 +66,22 @@ function M.setup()
     dashboard.section.header.val = header()
 
     dashboard.section.buttons.val = {
-        dashboard.button("e", "\xE2\x98\xA0 New file", ":ene <BAR> startinsert <CR>"),
-        dashboard.button("c", "  Configuration", ":e $MYVIMRC <CR>"),
-        -- dashboard.button("SPC f f", "  Find file"),
+        dashboard.button("e", "🎇 New file", ":ene <BAR> startinsert <CR>"),
+        dashboard.button("c", "🌀 Configuration", ":e $MYVIMRC <CR>"),
+        dashboard.button("f", "🎓 Find file", ":<leader>ff<CR>"),
         -- dashboard.button("SPC f h", "  Recently opened files"),
         -- dashboard.button("SPC f r", "  Frecency/MRU"),
         -- dashboard.button("SPC f g", "  Find word"),
         -- dashboard.button("SPC f m", "  Jump to bookmarks"),
         -- dashboard.button("SPC s l", "  Open last session"),
-        dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
+        dashboard.button("q", "🌒 Quit Neovim", ":qa<CR>"),
     }
 
     local function footer()
         -- Number of plugins
         local total_plugins = #vim.tbl_keys(packer_plugins)
-        local datetime = os.date "%d-%m-%Y  %H:%M:%S"
-        local plugins_text = "\t" .. total_plugins .. " plugins  " .. datetime
+        local datetime = os.date [[%d-%m-%Y  %H:%M:%S]]
+        local plugins_text = "\t" .. total_plugins .. " plugins ➕ " .. datetime
 
         -- Quote
         local fortune = require "alpha.fortune"

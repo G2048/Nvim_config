@@ -376,7 +376,7 @@ function M.setup()
     local packer = require "packer"
     packer.init(conf)
     packer.startup(plugins)
-
+    print('Config rewrite!', os.date(), 'ツ')
 end
 
 return M

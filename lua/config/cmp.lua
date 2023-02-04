@@ -11,20 +11,6 @@ function M.setup()
     -- local compare = require('cmp.config.compare')
 
     cmp.setup {
-        -- sorting = {
-        --     priority_weight = 3,
-        --     comparators = {
-        --       -- require('cmp_tabnine.compare'),
-        --       compare.offset,
-        --       compare.exact,
-        --       compare.score,
-        --       compare.recently_used,
-        --       compare.kind,
-        --       compare.sort_text,
-        --       compare.length,
-        --       compare.order,
-        --     },
-        -- },
         completion = { completeopt = "menu,menuone,noinsert", keyword_length = 5 },
         experimental = { native_menu = false, ghost_text = true },
 
@@ -149,9 +135,9 @@ function M.setup()
     cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done { map_char = { tex = "" } })
 
 
-    local capabilities = require('cmp_nvim_lsp').update_capabilities()
+    local capabilities = require('cmp_nvim_lsp').default_capabilities()
     require('lspconfig')['pyright'].setup {
-        -- on_attach = on_attach,
+        on_attach = on_attach,
         flags = lsp_flags,
         capabilities = capabilities
     }
