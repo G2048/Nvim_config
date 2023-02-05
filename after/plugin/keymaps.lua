@@ -17,8 +17,8 @@ keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", expr_opts)
 keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", expr_opts)
 
 -- Better indent
-keymap("v", "<", "<gv", default_opts)
-keymap("v", ">", ">gv", default_opts)
+keymap("v", "F", "<gv", default_opts)
+keymap("v", "f", ">gv", default_opts)
 
 -- Paste over currently selected text without yanking it
 keymap("v", "p", '"_dP', default_opts)
@@ -56,6 +56,5 @@ keymap('n', '<c-t>c', ':tabclose <CR>', default_opts)
 keymap('n', '=', ':tabnext<CR>', default_opts)
 keymap('n', '-', ':tabNext<CR>', default_opts)
 keymap('n', '+', ':tabmove <CR>', default_opts)
-keymap('n', '_', ':tabmove -1<CR>', default_opts)
 keymap('n', '<c-t>1', ':tabfirst <CR>', default_opts)
 keymap('n', '<c-t>0', ':tablast <CR>', default_opts)
