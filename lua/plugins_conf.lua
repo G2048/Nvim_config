@@ -42,59 +42,15 @@ function M.setup()
 
 
         -- Colorschemes
-        use {
-            "ajmwagar/vim-deus",
-            config = function()
-                -- vim.cmd "colorscheme deus"
-            end,
-        }
-
-        use {
-            "kyoz/purify",
-            config = function()
-                -- vim.cmd "colorscheme purify"
-            end,
-        }
-
-        use {
-            "rakr/vim-one",
-            config = function()
-                vim.cmd "colorscheme one"
-            end,
-        }
-
-
-        use {
-            "jacoborus/tender.vim",
-            config = function()
-                -- vim.cmd "colorscheme tender"
-            end,
-        }
-        use {
-            "dracula/vim",
-            config = function()
-                -- vim.cmd "colorscheme dracula"
-            end,
-        }
-        use {
-            "sainnhe/everforest",
-            -- vim.cmd "colorscheme everforest"
-            config = function()
-            end,
-        }
-        use {
-            "nanotech/jellybeans.vim",
-            -- vim.cmd "colorscheme jellybeans"
-            config = function()
-            end,
-        }
-        use {
-            "gregsexton/Atom",
-            config = function()
-                -- vim.cmd "colorscheme atom"
-            end,
-        }
-
+        use { "ajmwagar/vim-deus" }
+        use { "kyoz/purify" }
+        use { "rakr/vim-one" }
+        use { "jacoborus/tender.vim" }
+        use { "dracula/vim" }
+        use { "sainnhe/everforest" }
+        use { "nanotech/jellybeans.vim" }
+        use { "gregsexton/Atom" }
+        use { "romgrk/doom-one.vim" }
 
         -- Startup screen
         use {
@@ -125,6 +81,7 @@ function M.setup()
         }
 
 
+        -- Coc LSP
         -- use {
         --   "ms-jpq/coq_nvim",
         --   disable = false,
@@ -189,8 +146,7 @@ function M.setup()
                 disable = false,
             },
         }
-
-
+ 
         -- Treesitter
         use {
             "nvim-treesitter/nvim-treesitter",
