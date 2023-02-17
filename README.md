@@ -34,6 +34,8 @@
 ```
 
 # Requirements
+***Install [Neovim 7+](https://github.com/neovim/neovim) !!!***
+
 install [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf)
 ```bash
 mkdir -p ~/.local/share/fonts
@@ -41,6 +43,23 @@ cd ~/.local/share/fonts && curl -fLo "Droid Sans Mono for Powerline Nerd Font Co
 fc-cache -fv
 ```
 > This is needed for icons are showed
+
+# Screenshots
+
+### StartScreen
+![two_screens](https://github.com/G2048/Nvim_config/blob/main/images/two_screens.jpg?raw=true)
+
+
+
+### Example of LSP
+![example_lsp_1](https://github.com/G2048/Nvim_config/blob/main/images/nvim_lsp.jpg?raw=true)
+
+
+![example_lsp_2](https://github.com/G2048/Nvim_config/blob/main/images/nvim.jpg?raw=true)
+
+
+![example_3](https://github.com/G2048/Nvim_config/blob/main/images/full_screen.png?raw=true)
+
 
 
 # Keymappings
