@@ -35,6 +35,7 @@
 
 # Requirements
 ***Install [Neovim 7+](https://github.com/neovim/neovim) !!!***
+**Before that you should install** *[dependencies](https://github.com/neovim/neovim/wiki/Building-Neovim#build-prerequisites)*
 
 install [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf)
 ```bash

@@ -51,6 +51,7 @@ function M.setup()
         use { "nanotech/jellybeans.vim" }
         use { "gregsexton/Atom" }
         use { "romgrk/doom-one.vim" }
+        use { "NTBBloodbath/sweetie.nvim" }
 
         -- Startup screen
         use {
