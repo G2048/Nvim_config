@@ -34,8 +34,37 @@
 ```
 
 # Requirements
-***Install [Neovim 7+](https://github.com/neovim/neovim) !!!***
+***You should install [Neovim v0.9.0 nightly build](https://github.com/neovim/neovim/releases/tag/nightly) !!!***
 **Before that you should install** *[dependencies](https://github.com/neovim/neovim/wiki/Building-Neovim#build-prerequisites)*
+
+## Quick Start
+
+```bash
+sudo apt-get install ninja-build gettext libtool-bin cmake g++ pkg-config unzip curl
+```
+
+or
+
+```bash
+sudo dnf -y install ninja-build libtool cmake gcc gcc-c++ make pkgconfig unzip gettext curl
+```
+
+Download
+```bash
+curl -v -L https://github.com/neovim/neovim/archive/refs/tags/nightly.tar.gz --output nightly.tar.gz && tar xzvf nvim-linux64.tar.gz && cd neovim-nightly
+```
+
+[Build from source](https://github.com/neovim/neovim)
+```bash
+make CMAKE_BUILD_TYPE=RelWithDebInfo
+sudo make install
+```
+
+Install [Pyright](https://github.com/neovim/nvim-lspconfig)
+```bash
+npm i -g pyright
+```
+
 
 install [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf)
 ```bash
