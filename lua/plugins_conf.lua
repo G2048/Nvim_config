@@ -76,7 +76,7 @@ function M.setup()
             requires = {
                 "williamboman/nvim-lsp-installer",
                 "ray-x/lsp_signature.nvim",
-                -- 'neovim/nvim-lspconfig',
+                'neovim/nvim-lspconfig',
                 'hrsh7th/cmp-nvim-lsp',
             },
         }
@@ -129,12 +129,12 @@ function M.setup()
                 'hrsh7th/cmp-nvim-lsp-signature-help',
                 "chrisgrieser/cmp-nerdfont",
                 {
-                    'tzachar/cmp-tabnine',
+                   'tzachar/cmp-tabnine',
                     -- after = "nvim-cmp",
                     -- run='./install.sh',
                     requires = 'hrsh7th/nvim-cmp',
                     config = function()
-                        require("config.cmp_tabnine").setup()
+                       require("config.cmp_tabnine").setup()
                     end,
                 },
                 {
@@ -147,7 +147,7 @@ function M.setup()
                 disable = false,
             },
         }
- 
+
         -- Treesitter
         use {
             "nvim-treesitter/nvim-treesitter",
