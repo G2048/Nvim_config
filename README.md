@@ -74,6 +74,17 @@ fc-cache -fv
 ```
 > This is needed for icons are showed
 
+
+After that, open the ***lua/plugins_conf.lua*** file and press the follow keys: ***Space + z + s***
+
+
+### Pitfalls
+If you see the follow message: *cmp-tabnine: Cannot find installed TabNine. Please run install.sh* You must run the ***install.sh*** manually:
+```bash
+~/.local/share/nvim/site/pack/packer/opt/cmp-tabnine/install.sh
+```
+
+
 # Screenshots
 
 ### StartScreen
